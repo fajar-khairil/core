@@ -79,7 +79,6 @@ class Kohana_I18n {
 
 		// Load the translation table for this language
 		$table = I18n::load($lang);
-
 		// Return the translated string if it exists
 		return isset($table[$string]) ? $table[$string] : $string;
 	}
@@ -99,18 +98,18 @@ class Kohana_I18n {
 		{
 			return I18n::$_cache[$lang];
 		}
-
+		
 		// New translation table
 		$table = array();
 
 		// Split the language: language, region, locale, etc
 		$parts = explode('-', $lang);
-
+		
 		do
 		{
 			// Create a path for this set of parts
 			$path = implode(DIRECTORY_SEPARATOR, $parts);
-
+			
 			if ($files = Kohana::find_file('i18n', $path, NULL, TRUE))
 			{
 				$t = array();
@@ -129,7 +128,7 @@ class Kohana_I18n {
 			array_pop($parts);
 		}
 		while ($parts);
-
+		
 		// Cache the translation table locally
 		return I18n::$_cache[$lang] = $table;
 	}
@@ -153,14 +152,13 @@ if ( ! function_exists('__'))
 	 * @return  string
 	 */
 	function __($string, array $values = NULL, $lang = 'en-us')
-	{
+	{	
 		if ($lang !== I18n::$lang)
 		{
 			// The message and target languages are different
 			// Get the translation for this message
 			$string = I18n::get($string);
 		}
-
 		return empty($values) ? $string : strtr($string, $values);
 	}
 }

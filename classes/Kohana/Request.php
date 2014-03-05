@@ -196,10 +196,9 @@ class Kohana_Request implements HTTP_Request {
 			}
 		}
 		else
-		{
+		{			
 			$request = new Request($uri, $client_params, $allow_external, $injected_routes);
 		}
-
 		return $request;
 	}
 
@@ -458,13 +457,12 @@ class Kohana_Request implements HTTP_Request {
 	{
 		// Load routes
 		$routes = (empty($routes)) ? Route::all() : $routes;
-		$params = NULL;
-
+		$params = NULL;		
 		foreach ($routes as $name => $route)
 		{
 			// We found something suitable
 			if ($params = $route->matches($request))
-			{
+			{			
 				return array(
 					'params' => $params,
 					'route' => $route,
@@ -936,13 +934,13 @@ class Kohana_Request implements HTTP_Request {
 		if ( ! $this->_external)
 		{
 			$processed = Request::process($this, $this->_routes);
-
+			
 			if ($processed)
 			{
 				// Store the matching route
 				$this->_route = $processed['route'];
 				$params = $processed['params'];
-
+			
 				// Is this route external?
 				$this->_external = $this->_route->is_external();
 

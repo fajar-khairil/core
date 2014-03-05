@@ -49,7 +49,7 @@ abstract class Kohana_Session {
 
 			// Set the session class name
 			$class = 'Session_'.ucfirst($type);
-
+			
 			// Create a new session instance
 			Session::$instances[$type] = $session = new $class($config, $id);
 
@@ -375,8 +375,7 @@ abstract class Kohana_Session {
 		{
 			// Log & ignore all errors when a write fails
 			Kohana::$log->add(Log::ERROR, Kohana_Exception::text($e))->write();
-
-			return FALSE;
+			throw $e;
 		}
 	}
 

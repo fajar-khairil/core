@@ -504,9 +504,9 @@ class Kohana_Core {
 		}
 
 		$file .= str_replace('_', DIRECTORY_SEPARATOR, $class);
-
+		
 		if ($path = Kohana::find_file($directory, $file))
-		{
+		{			
 			// Load the class file
 			require $path;
 
@@ -647,7 +647,7 @@ class Kohana_Core {
 	 * @return  string  single file path
 	 */
 	public static function find_file($dir, $file, $ext = NULL, $array = FALSE)
-	{
+	{				
 		if ($ext === NULL)
 		{
 			// Use the default extension
@@ -666,7 +666,6 @@ class Kohana_Core {
 
 		// Create a partial path of the filename
 		$path = $dir.DIRECTORY_SEPARATOR.$file.$ext;
-
 		if (Kohana::$caching === TRUE AND isset(Kohana::$_files[$path.($array ? '_array' : '_path')]))
 		{
 			// This path has been cached
@@ -745,7 +744,7 @@ class Kohana_Core {
 	 * @return  array
 	 */
 	public static function list_files($directory = NULL, array $paths = NULL)
-	{
+	{		
 		if ($directory !== NULL)
 		{
 			// Add the directory separator
